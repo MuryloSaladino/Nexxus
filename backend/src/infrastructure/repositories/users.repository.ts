@@ -13,13 +13,7 @@ export class UsersRepository extends BaseRepository<User> implements IUsersRepos
     ) { super() }
 
 
-    public async findOneByEmail(email: string): Promise<User | null> {
-        return await this.repository.findOne({
-            where: { email }
-        });
-    }
-
-    public async existsByEmail(email: string): Promise<boolean> {
-        return await this.repository.existsBy({ email });
+    public async findOneByUsername(username: string): Promise<User | null> {
+        return await this.repository.findOneBy({ username });
     }
 }
