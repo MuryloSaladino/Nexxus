@@ -1,7 +1,5 @@
-import { IBcryptService } from "src/domain/adapters/bcrypt.interface";
 import { ISolutionRepository } from "src/domain/repositories/solution.repository";
 import { IUsersRepository } from "src/domain/repositories/user.repository";
-import { ILogger } from "src/domain/services/logger.interface";
 import { Priority } from "src/domain/types/priority.type";
 import { Status } from "src/domain/types/status.type";
 import { NotFoundError } from "src/infrastructure/errors/not-found.error";
