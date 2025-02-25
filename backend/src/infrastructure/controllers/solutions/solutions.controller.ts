@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import { ApiResponseType } from "src/infrastructure/common/swagger/response.decorator";
 import { SolutionsUseCasesProxyModule } from "src/infrastructure/usecases-proxy/solutions-usecases-proxy.module";
 import { UseCaseProxy } from "src/infrastructure/usecases-proxy/usecases-proxy";
@@ -9,7 +9,9 @@ import { GetSolutionUseCases } from "src/usecases/solutions/get-solution.usecase
 import { UpdateSolutionUseCases } from "src/usecases/solutions/update-solution.usecases";
 import { SolutionPresenter, SummarizedSolutionPresenter } from "./solutions.presenter";
 import { CreateSolutionDTO, UpdateSolutionDTO } from "./solutions.dto";
+import { AuthGuard } from "src/infrastructure/common/guards/auth.guard";
 
+@UseGuards(AuthGuard)
 @Controller("/solutions")
 export class SolutionsController {
     constructor(

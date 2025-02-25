@@ -7,11 +7,13 @@ import { JWTServiceModule } from './infrastructure/services/jwt/jwt.module';
 import { EnvironmentConfigModule } from './infrastructure/config/enviroment/enviroment-config.module';
 import { ControllersModule } from './infrastructure/controllers/controllers.module';
 import { SolutionsUseCasesProxyModule } from './infrastructure/usecases-proxy/solutions-usecases-proxy.module';
+import { AuthUseCasesProxyModule } from './infrastructure/usecases-proxy/auth-usecases-proxy.module';
 
 @Module({
     imports: [
         UsersUseCasesProxyModule.register(),
         SolutionsUseCasesProxyModule.register(),
+        AuthUseCasesProxyModule.register(),
         
         ControllersModule,
         
