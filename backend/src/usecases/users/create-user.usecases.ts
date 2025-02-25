@@ -2,7 +2,6 @@ import { IBcryptService } from "src/domain/adapters/bcrypt.interface";
 import { UserModel } from "src/domain/models/user.model";
 import { IUsersRepository } from "src/domain/repositories/user.repository";
 import { ILogger } from "src/domain/services/logger.interface";
-import { BadRequestError } from "src/infrastructure/errors/bad-request.error";
 
 export class CreateUserUseCases {
     constructor(
