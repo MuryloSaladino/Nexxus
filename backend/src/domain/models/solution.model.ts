@@ -4,8 +4,8 @@ import { BaseModel } from "./base.model";
 import { UserModel } from "./user.model";
 
 export class SolutionModel extends BaseModel {
-    userInCharge: UserModel;
-    userInChargeId: string;
+    userInCharge: UserModel | null;
+    userInChargeId: string | null;
     clientDepartment: string;
     benefit: number | null;
     investment: number | null;
