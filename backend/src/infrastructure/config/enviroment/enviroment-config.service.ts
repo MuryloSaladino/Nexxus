@@ -20,8 +20,4 @@ export default class EnvironmentConfigService implements DatabaseConfig, JWTConf
     public getDatabaseURL(): string {
         return this.configService.get<string>("DB_URL") || "";
     }
-
-    public getDatabaseSync(): boolean {
-        return this.configService.get<boolean>("DB_SYNC") || false;
-    }
 }
