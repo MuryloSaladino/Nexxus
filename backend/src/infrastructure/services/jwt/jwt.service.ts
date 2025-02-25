@@ -18,10 +18,12 @@ export class JWTService implements IJWTService {
 
     
     extractToken(token: string): Promise<IJwtPayload> {
-        return this.jwtService.verifyAsync(token);
+        return this.jwtService.verifyAsync(token, {
+            secret: this.secretKey
+        });
     }
 
-    createToken(payload: string): string {
+    createToken(payload: IJwtPayload): string {
         return this.jwtService.sign(payload, {
             secret: this.secretKey
         });
