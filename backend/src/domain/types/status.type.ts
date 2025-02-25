@@ -1,0 +1,1 @@
+export type Status = "On Going" | "Completed" | "Awaiting" | "Idea";
