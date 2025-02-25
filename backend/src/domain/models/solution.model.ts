@@ -6,6 +6,7 @@ import { UserModel } from "./user.model";
 export class SolutionModel extends BaseModel {
     userInCharge: UserModel | null;
     userInChargeId: string | null;
+    name: string;
     clientDepartment: string;
     benefit: number | null;
     investment: number | null;

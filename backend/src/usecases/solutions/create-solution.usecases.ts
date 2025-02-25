@@ -7,6 +7,7 @@ import { NotFoundError } from "src/infrastructure/errors/not-found.error";
 
 interface ISolutionCreation {
     userInChargeId: string | null;
+    name: string;
     clientDepartment: string;
     benefit: number | null;
     investment: number | null;
@@ -25,14 +26,7 @@ export class CreateSolutionUseCases {
 
     async execute({
         userInChargeId,
-        clientDepartment,
-        benefit,
-        investment,
-        status,
-        priority,
-        description,
-        justification,
-        orchestration,
+        ...payload
     }: ISolutionCreation) {
         if(userInChargeId) {
             const user = await this.usersRepository.findById(userInChargeId);
@@ -41,14 +35,7 @@ export class CreateSolutionUseCases {
 
         const solution = new SolutionModel();
         solution.userInChargeId = userInChargeId;
-        solution.clientDepartment = clientDepartment;
-        solution.benefit = benefit;
-        solution.investment = investment;
-        solution.status = status;
-        solution.priority = priority;
-        solution.description = description;
-        solution.justification = justification;
-        solution.orchestration = orchestration;
+        Object.assign(solution, payload);
 
         return await this.solutionsRepository.create(solution);
     }

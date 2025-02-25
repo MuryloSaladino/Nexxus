@@ -5,8 +5,8 @@ import { Status } from "src/domain/types/status.type";
 import { NotFoundError } from "src/infrastructure/errors/not-found.error";
 
 interface ISolutionUpdate {
-    id: string;
     userInChargeId?: string | null;
+    name?: string;
     clientDepartment?: string;
     benefit?: number | null;
     investment?: number | null;
@@ -23,8 +23,7 @@ export class UpdateSolutionUseCases {
         private readonly usersRepository: IUsersRepository,
     ) {}
 
-    async execute({
-        id,
+    async execute(id: string, {
         userInChargeId,
         ...payload
     }: ISolutionUpdate) {
