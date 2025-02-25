@@ -9,7 +9,7 @@ export class User extends BaseEntity implements UserModel {
     @Column({ type: "varchar", length: 20 })
     username: string;
 
-    @Column({ select: false })
+    @Column()
     password: string;
 
     @OneToMany(() => Solution, (s) => s.userInCharge)
