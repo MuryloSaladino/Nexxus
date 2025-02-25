@@ -6,9 +6,20 @@ import { BCryptServiceModule } from './infrastructure/services/bcrypt/bcrypt.mod
 import { JWTServiceModule } from './infrastructure/services/jwt/jwt.module';
 import { EnvironmentConfigModule } from './infrastructure/config/enviroment/enviroment-config.module';
 import { ControllersModule } from './infrastructure/controllers/controllers.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import typeormConfig from './infrastructure/config/typeorm/typeorm.config';
 
 @Module({
     imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            load: [typeormConfig]
+        }),
+        TypeOrmModule.forRootAsync({
+            inject: [ConfigService],
+            useFactory: async (configService: ConfigService) => (configService.get('typeorm')!)
+        }),
         JwtModule.register({
             secret: process.env.JWT_SECRET,
         }),
@@ -20,4 +31,4 @@ import { ControllersModule } from './infrastructure/controllers/controllers.modu
         EnvironmentConfigModule,
     ],
 })
-export class AppModule {}
+export class AppModule { }
