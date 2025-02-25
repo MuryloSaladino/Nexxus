@@ -33,7 +33,7 @@ export class SolutionsUseCasesProxyModule {
             module: SolutionsUseCasesProxyModule,
             providers: [
                 {
-                    inject: [LoggerService, SolutionsRepository, BCryptService],
+                    inject: [SolutionsRepository, UsersRepository],
                     provide: SolutionsUseCasesProxyModule.CREATE_SOLUTION_PROXY,
                     useFactory: (
                         solutionsRepository: SolutionsRepository,
@@ -41,21 +41,21 @@ export class SolutionsUseCasesProxyModule {
                     ) => new UseCaseProxy(new CreateSolutionUseCases(solutionsRepository, usersRepository))
                 },
                 {
-                    inject: [LoggerService, SolutionsRepository],
+                    inject: [SolutionsRepository],
                     provide: SolutionsUseCasesProxyModule.GET_SOLUTION_PROXY,
                     useFactory: (
                         solutionsRepository: SolutionsRepository
                     ) => new UseCaseProxy(new GetSolutionUseCases(solutionsRepository))
                 },
                 {
-                    inject: [LoggerService, SolutionsRepository],
+                    inject: [SolutionsRepository],
                     provide: SolutionsUseCasesProxyModule.GET_ALL_SOLUTIONS_PROXY,
                     useFactory: (
                         solutionsRepository: SolutionsRepository,
                     ) => new UseCaseProxy(new GetAllSolutionsUseCases(solutionsRepository))
                 },
                 {
-                    inject: [LoggerService, SolutionsRepository, BCryptService],
+                    inject: [SolutionsRepository, UsersRepository],
                     provide: SolutionsUseCasesProxyModule.UPDATE_SOLUTION_PROXY,
                     useFactory: (
                         solutionsRepository: SolutionsRepository,
@@ -63,7 +63,7 @@ export class SolutionsUseCasesProxyModule {
                     ) => new UseCaseProxy(new UpdateSolutionUseCases(solutionsRepository, usersRepository))
                 },
                 {
-                    inject: [LoggerService, SolutionsRepository],
+                    inject: [SolutionsRepository],
                     provide: SolutionsUseCasesProxyModule.DELETE_SOLUTION_PROXY,
                     useFactory: (
                         solutionsRepository: SolutionsRepository,
