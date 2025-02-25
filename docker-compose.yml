@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.frontend
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   command: "npm run dev -- --host"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - app_network
+
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile.backend
+  #   ports:
+  #     - "3333:3333"
+  #   volumes:
+  #     - ./backend:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - NODE_ENV=development
+  #     - DB_URL=postgresql://postgres:Password1!@db:5432/nexxus
+  #     - JWT_SECRET=supersecretkey
+  #     - PORT=3333
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   command: "npm run start:dev"
+  #   networks:
+  #     - app_network
+
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Password1!
+      - POSTGRES_DB=nexxus
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      retries: 5
+
+volumes:
+  pg_data:
+
+networks:
+  app_network:
+    driver: bridge
