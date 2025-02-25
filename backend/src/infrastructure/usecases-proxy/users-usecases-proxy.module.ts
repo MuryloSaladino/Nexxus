@@ -21,7 +21,6 @@ import { DeleteUserUseCases } from "src/usecases/users/delete-user.usecases";
 })
 export class UsersUseCasesProxyModule {
 
-    // Users
     static CREATE_USER_PROXY = "createUserProxy";
     static GET_USER_PROXY = "getUserProxy";
     static GET_ALL_USERS_PROXY = "getAllUsersProxy";
