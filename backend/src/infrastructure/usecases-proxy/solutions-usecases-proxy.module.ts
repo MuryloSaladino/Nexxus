@@ -1,10 +1,6 @@
 import { DynamicModule, Module } from "@nestjs/common";
-import { LoggerServiceModule } from "../services/logger/logger.module";
-import { BCryptServiceModule } from "../services/bcrypt/bcrypt.module";
 import { RepositoriesModule } from "../repositories/repositories.module";
-import { LoggerService } from "../services/logger/logger.service";
 import { UsersRepository } from "../repositories/users.repository";
-import { BCryptService } from "../services/bcrypt/bcrypt.service";
 import { UseCaseProxy } from "./usecases-proxy";
 import { SolutionsRepository } from "../repositories/solution.repository";
 import { CreateSolutionUseCases } from "src/usecases/solutions/create-solution.usecases";
@@ -15,9 +11,7 @@ import { DeleteSolutionUseCases } from "src/usecases/solutions/delete-solution.u
 
 @Module({
     imports: [
-        LoggerServiceModule,
         RepositoriesModule,
-        BCryptServiceModule,
     ]
 })
 export class SolutionsUseCasesProxyModule {
