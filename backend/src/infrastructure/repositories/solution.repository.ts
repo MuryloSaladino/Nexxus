@@ -45,14 +45,31 @@ export class SolutionsRepository extends BaseRepository<Solution> implements ISo
     }
 
     async getInvestmentBenefitSummary(): Promise<InvestmentBenefitSummary> {
-        throw new Error("Method not implemented.");
+        return await this.repository
+            .createQueryBuilder("s")
+            .select("SUM(s.investment)", "realInvestment")
+            .addSelect("SUM(s.benefit)", "benefit")
+            .getRawOne<InvestmentBenefitSummary>() 
+                ?? { realInvestment: 0, benefit: 0 };
     }
 
-    async getDepartmentTotalSolutions(): Promise<DepartmentTotalSolutions> {
-        throw new Error("Method not implemented.");
+    async getDepartmentTotalSolutions(): Promise<DepartmentTotalSolutions[]> {
+        return await this.repository
+            .createQueryBuilder("s")
+            .select("s.clientDepartment", "department")
+            .addSelect("COUNT(s.id)", "solutions")
+            .groupBy("s.clientDepartment")
+            .getRawMany();
     }
 
     async getGeneralStatusInsight(): Promise<GeneralStatusInsight> {
-        throw new Error("Method not implemented.");
+        const [completed, onGoing, awaiting, idea] = await Promise.all([
+            this.repository.count({ where: { status: "Completed" } }),
+            this.repository.count({ where: { status: "On Going" } }),
+            this.repository.count({ where: { status: "Awaiting" } }),
+            this.repository.count({ where: { status: "Idea" } })
+        ]);
+    
+        return {completed, onGoing, awaiting, idea };
     }
 }

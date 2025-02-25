@@ -8,6 +8,6 @@ export interface ISolutionRepository extends IBaseRepository<SolutionModel> {
         Promise<Paginated<Omit<SolutionModel, "description" | "justification" | "orchestration">>>;
     getInvestmentBenefitProportion(): Promise<InvestmentBenefitProportion[]>;
     getInvestmentBenefitSummary(): Promise<InvestmentBenefitSummary>;
-    getDepartmentTotalSolutions(): Promise<DepartmentTotalSolutions>;
+    getDepartmentTotalSolutions(): Promise<DepartmentTotalSolutions[]>;
     getGeneralStatusInsight(): Promise<GeneralStatusInsight>;
 }

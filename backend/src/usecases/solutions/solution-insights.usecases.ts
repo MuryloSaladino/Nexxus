@@ -14,7 +14,7 @@ export class SolutionInsightsUseCases {
         return await this.solutionsRepository.getInvestmentBenefitSummary()
     }
 
-    async getDepartmentTotalSolutions(): Promise<DepartmentTotalSolutions> {
+    async getDepartmentTotalSolutions(): Promise<DepartmentTotalSolutions[]> {
         return await this.solutionsRepository.getDepartmentTotalSolutions()
     }
 

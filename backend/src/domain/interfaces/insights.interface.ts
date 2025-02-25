@@ -4,7 +4,6 @@ export interface InvestmentBenefitProportion {
 }
 
 export interface InvestmentBenefitSummary {
-    estimatedInvestment: number;
     realInvestment: number;
     benefit: number;
 }
