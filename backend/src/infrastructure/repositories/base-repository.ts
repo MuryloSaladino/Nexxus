@@ -42,6 +42,6 @@ export abstract class BaseRepository<TEntity extends BaseEntity> implements IBas
         const entity = await this.findById(id);
         if(!entity) return;
 
-        await this.repository.remove(entity);
+        await this.repository.softRemove(entity);
     }
 }
