@@ -3,9 +3,10 @@ import { UserModel } from "src/domain/models/user.model";
 import { Priority } from "src/domain/types/priority.type";
 import { Status } from "src/domain/types/status.type";
 import { BaseEntity } from "./base.entity";
-import { Column, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { User } from "./user.entity";
 
+@Entity("solutions")
 export class Solution extends BaseEntity implements SolutionModel {
 
     @ManyToOne(() => User, (u) => u.solutions, { 
