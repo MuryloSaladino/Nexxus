@@ -1,6 +1,7 @@
 import { IBaseRepository } from "src/domain/repositories/base.repository";
 import { DeepPartial, FindOptionsWhere, Repository } from "typeorm";
 import { BaseEntity } from "../entities/base.entity";
+import { Paginated } from "src/domain/interfaces/pagination.interface";
 
 export abstract class BaseRepository<TEntity extends BaseEntity> implements IBaseRepository<TEntity> {
     
@@ -16,8 +17,17 @@ export abstract class BaseRepository<TEntity extends BaseEntity> implements IBas
         return await this.repository.findOneBy({ id } as FindOptionsWhere<TEntity>);
     }
 
-    public async findAll(): Promise<TEntity[]> {
-        return await this.repository.find();
+    public async findAll(page: number = 1, size: number = 10): Promise<Paginated<TEntity>> {
+        const data = await this.repository.find({
+            skip: (page - 1) * size,
+            take: size,
+        });
+        const count = await this.repository.count();
+
+        return { 
+            data, page, size, 
+            totalPages: Math.ceil(count / size)
+        };
     }
 
     public async update(id: string, payload: Partial<TEntity>): Promise<TEntity | null> {
