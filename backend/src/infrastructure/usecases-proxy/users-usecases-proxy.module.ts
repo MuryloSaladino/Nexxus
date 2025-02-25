@@ -28,13 +28,6 @@ export class UsersUseCasesProxyModule {
     static UPDATE_USER_PROXY = "updateUserProxy";
     static DELETE_USER_PROXY = "deleteUserProxy";
 
-    // Solutions
-    static CREATE_SOLUTION_PROXY = "createSolutionProxy";
-    static GET_SOLUTION_PROXY = "getSolutionProxy";
-    static GET_ALL_SOLUTIONS_PROXY = "getAllSolutionsProxy";
-    static UPDATE_SOLUTION_PROXY = "updateSolutionProxy";
-    static DELETE_SOLUTION_PROXY = "deleteSolutionProxy";
-
     static register(): DynamicModule {
         return {
             module: UsersUseCasesProxyModule,
