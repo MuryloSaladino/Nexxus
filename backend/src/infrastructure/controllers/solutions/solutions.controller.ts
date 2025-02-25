@@ -27,7 +27,6 @@ export class SolutionsController {
         private readonly deleteSolutionUseCaseProxy: UseCaseProxy<DeleteSolutionUseCases>,
     ) {}
 
-
     @Post()
     @ApiResponseType(SolutionPresenter)
     async createSolution(@Body() payload: CreateSolutionDTO) {

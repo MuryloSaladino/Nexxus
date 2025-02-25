@@ -8,6 +8,7 @@ import { GetSolutionUseCases } from "src/usecases/solutions/get-solution.usecase
 import { GetAllSolutionsUseCases } from "src/usecases/solutions/get-all-solutions.usecases";
 import { UpdateSolutionUseCases } from "src/usecases/solutions/update-solution.usecases";
 import { DeleteSolutionUseCases } from "src/usecases/solutions/delete-solution.usecases";
+import { SolutionInsightsUseCases } from "src/usecases/solutions/solution-insights.usecases";
 
 @Module({
     imports: [
@@ -21,6 +22,8 @@ export class SolutionsUseCasesProxyModule {
     static GET_ALL_SOLUTIONS_PROXY = "getAllSolutionsProxy";
     static UPDATE_SOLUTION_PROXY = "updateSolutionProxy";
     static DELETE_SOLUTION_PROXY = "deleteSolutionProxy";
+    static SOLUTION_INSIGHTS_PROXY = "solutionInsightsProxy";
+    
 
     static register(): DynamicModule {
         return {
@@ -63,6 +66,13 @@ export class SolutionsUseCasesProxyModule {
                         solutionsRepository: SolutionsRepository,
                     ) => new UseCaseProxy(new DeleteSolutionUseCases(solutionsRepository))
                 },
+                {
+                    inject: [SolutionsRepository],
+                    provide: SolutionsUseCasesProxyModule.SOLUTION_INSIGHTS_PROXY,
+                    useFactory: (
+                        solutionsRepository: SolutionsRepository,
+                    ) => new UseCaseProxy(new SolutionInsightsUseCases(solutionsRepository))
+                },
             ],
             exports: [
                 SolutionsUseCasesProxyModule.CREATE_SOLUTION_PROXY,
@@ -70,6 +80,7 @@ export class SolutionsUseCasesProxyModule {
                 SolutionsUseCasesProxyModule.GET_ALL_SOLUTIONS_PROXY,
                 SolutionsUseCasesProxyModule.UPDATE_SOLUTION_PROXY,
                 SolutionsUseCasesProxyModule.DELETE_SOLUTION_PROXY,
+                SolutionsUseCasesProxyModule.SOLUTION_INSIGHTS_PROXY,
             ]
         }
     }

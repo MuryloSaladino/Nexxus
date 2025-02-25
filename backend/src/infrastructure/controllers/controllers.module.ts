@@ -6,6 +6,7 @@ import { SolutionsController } from "./solutions/solutions.controller";
 import { AuthUseCasesProxyModule } from "../usecases-proxy/auth-usecases-proxy.module";
 import { AuthController } from "./auth/auth.controller";
 import { JWTServiceModule } from "../services/jwt/jwt.module";
+import { InsightsController } from "./insights/insights.controller";
 
 @Module({
     imports: [
@@ -19,6 +20,7 @@ import { JWTServiceModule } from "../services/jwt/jwt.module";
         UsersController,
         SolutionsController,
         AuthController,
+        InsightsController,
     ],
 })
 export class ControllersModule {}
