@@ -19,7 +19,7 @@ import { DeleteUserUseCases } from "src/usecases/users/delete-user.usecases";
         BCryptServiceModule,
     ]
 })
-export class UseCasesProxyModule {
+export class UsersUseCasesProxyModule {
 
     // Users
     static CREATE_USER_PROXY = "createUserProxy";
@@ -27,14 +27,21 @@ export class UseCasesProxyModule {
     static GET_ALL_USERS_PROXY = "getAllUsersProxy";
     static UPDATE_USER_PROXY = "updateUserProxy";
     static DELETE_USER_PROXY = "deleteUserProxy";
-    
+
+    // Solutions
+    static CREATE_SOLUTION_PROXY = "createSolutionProxy";
+    static GET_SOLUTION_PROXY = "getSolutionProxy";
+    static GET_ALL_SOLUTIONS_PROXY = "getAllSolutionsProxy";
+    static UPDATE_SOLUTION_PROXY = "updateSolutionProxy";
+    static DELETE_SOLUTION_PROXY = "deleteSolutionProxy";
+
     static register(): DynamicModule {
         return {
-            module: UseCasesProxyModule,
+            module: UsersUseCasesProxyModule,
             providers: [
                 {
                     inject: [LoggerService, UsersRepository, BCryptService],
-                    provide: UseCasesProxyModule.CREATE_USER_PROXY,
+                    provide: UsersUseCasesProxyModule.CREATE_USER_PROXY,
                     useFactory: (
                         logger: LoggerService,
                         usersRepository: UsersRepository,
@@ -43,7 +50,7 @@ export class UseCasesProxyModule {
                 },
                 {
                     inject: [LoggerService, UsersRepository],
-                    provide: UseCasesProxyModule.GET_USER_PROXY,
+                    provide: UsersUseCasesProxyModule.GET_USER_PROXY,
                     useFactory: (
                         logger: LoggerService,
                         usersRepository: UsersRepository
@@ -51,7 +58,7 @@ export class UseCasesProxyModule {
                 },
                 {
                     inject: [LoggerService, UsersRepository],
-                    provide: UseCasesProxyModule.GET_ALL_USERS_PROXY,
+                    provide: UsersUseCasesProxyModule.GET_ALL_USERS_PROXY,
                     useFactory: (
                         logger: LoggerService,
                         usersRepository: UsersRepository,
@@ -59,7 +66,7 @@ export class UseCasesProxyModule {
                 },
                 {
                     inject: [LoggerService, UsersRepository, BCryptService],
-                    provide: UseCasesProxyModule.UPDATE_USER_PROXY,
+                    provide: UsersUseCasesProxyModule.UPDATE_USER_PROXY,
                     useFactory: (
                         logger: LoggerService,
                         usersRepository: UsersRepository,
@@ -68,7 +75,7 @@ export class UseCasesProxyModule {
                 },
                 {
                     inject: [LoggerService, UsersRepository],
-                    provide: UseCasesProxyModule.DELETE_USER_PROXY,
+                    provide: UsersUseCasesProxyModule.DELETE_USER_PROXY,
                     useFactory: (
                         logger: LoggerService,
                         usersRepository: UsersRepository,
@@ -76,12 +83,11 @@ export class UseCasesProxyModule {
                 },
             ],
             exports: [
-                // Users
-                UseCasesProxyModule.CREATE_USER_PROXY,
-                UseCasesProxyModule.GET_USER_PROXY,
-                UseCasesProxyModule.GET_ALL_USERS_PROXY,
-                UseCasesProxyModule.UPDATE_USER_PROXY,
-                UseCasesProxyModule.DELETE_USER_PROXY,
+                UsersUseCasesProxyModule.CREATE_USER_PROXY,
+                UsersUseCasesProxyModule.GET_USER_PROXY,
+                UsersUseCasesProxyModule.GET_ALL_USERS_PROXY,
+                UsersUseCasesProxyModule.UPDATE_USER_PROXY,
+                UsersUseCasesProxyModule.DELETE_USER_PROXY,
             ]
         }
     }
