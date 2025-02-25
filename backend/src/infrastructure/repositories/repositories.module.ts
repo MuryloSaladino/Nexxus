@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersRepository } from './users.repository';
 import { User } from '../entities/user.entity';
 import { Solution } from '../entities/solution.entity';
-import { SolutionRepository } from './solution.repository';
+import { SolutionsRepository } from './solution.repository';
 import { TypeOrmConfigModule } from '../config/typeorm/typeorm.module';
 
 @Module({
@@ -11,7 +11,7 @@ import { TypeOrmConfigModule } from '../config/typeorm/typeorm.module';
         TypeOrmConfigModule, 
         TypeOrmModule.forFeature([User, Solution])
     ],
-    providers: [UsersRepository, SolutionRepository],
-    exports: [UsersRepository, SolutionRepository]
+    providers: [UsersRepository, SolutionsRepository],
+    exports: [UsersRepository, SolutionsRepository]
 })
 export class RepositoriesModule {}
