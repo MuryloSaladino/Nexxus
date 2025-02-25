@@ -16,6 +16,9 @@ export class Solution extends BaseEntity implements SolutionModel {
     
     @Column({ nullable: true })
     userInChargeId: string | null;
+
+    @Column({ length: 50 })
+    name: string;
     
     @Column({ length: 100 })
     clientDepartment: string;
