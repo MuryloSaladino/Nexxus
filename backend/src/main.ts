@@ -12,19 +12,27 @@ async function bootstrap() {
     const env = process.env.NODE_ENV;
     const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
 
+    if (env !== "production") {
+        app.enableCors({
+            origin: "*",
+            methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+            allowedHeaders: ["Content-Type", "Authorization"],
+        });
+    }
+
     // Filters
     app.useGlobalFilters(new AllExceptionsFilter(new LoggerService()));
-    
+
     // Pipes
     app.useGlobalPipes(validationPipe);
 
     // Interceptors
     app.useGlobalInterceptors(new ResponseInterceptor());
     app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
-    
+
     app.setGlobalPrefix("/api");
 
-    if(env !== "prod") {
+    if (env !== "production") {
         setupSwagger(app);
     }
 
