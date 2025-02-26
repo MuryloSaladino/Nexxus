@@ -23,6 +23,6 @@ export class LoginUseCases {
             username: user.username,
         });
 
-        return { token }
+        return { token, username }
     }
 }
