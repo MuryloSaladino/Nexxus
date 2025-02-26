@@ -5,8 +5,8 @@ export class GetAllSolutionsUseCases {
         private readonly solutionsRepository: ISolutionRepository,
     ) {}
 
-    async execute(page: number = 1, size: number = 10) {
-        const solutions = await this.solutionsRepository.findSummarized(page, size);
+    async execute(name: string = "", page: number = 1, size: number = 10) {
+        const solutions = await this.solutionsRepository.findSummarized(name, page, size);
 
         return solutions;
     }

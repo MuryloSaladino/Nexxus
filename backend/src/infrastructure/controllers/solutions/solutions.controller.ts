@@ -46,11 +46,12 @@ export class SolutionsController {
     @Get()
     @ApiResponseType(SolutionPresenter, true)
     async getAllSolutions(
+        @Query("name") name: string,
         @Query("page") page: number,
-        @Query("size") size: number
+        @Query("size") size: number,
     ) {
         const users = await this.getAllSolutionsUseCaseProxy
-            .getInstance().execute(page, size)
+            .getInstance().execute(name, page, size)
         return {
             ...users,
             data: users.data.map(x => new SummarizedSolutionPresenter(x))
