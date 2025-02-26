@@ -1,0 +1,16 @@
+.container {
+    width: 95vw;
+    max-width: 1000px;
+    margin: 2rem auto;
+
+    min-height: 80vh;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    text-align: center;
+}
