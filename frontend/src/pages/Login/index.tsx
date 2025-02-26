@@ -56,8 +56,8 @@ export default function Login() {
                 />
             </div>
 
-            <div>
-                <Text>If you are testing this and want to populate the database, hit this button bellow!</Text>
+            <div className={styles.pop_container}>
+                <Text fontSize="xl2" textAlign="center">If you are testing this and want to populate the database, hit this button bellow!</Text>
                 <Button onClick={handlePopClick}>Populate</Button>
             </div>
         </div>
