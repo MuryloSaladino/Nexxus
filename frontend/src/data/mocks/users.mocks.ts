@@ -6,4 +6,4 @@ export const usernameMocks: string[] = [
     "god2ct",
 ]
 
-export const defaultPassword: string = "12345678";
+export const defaultPassword: string = "Password1!";
