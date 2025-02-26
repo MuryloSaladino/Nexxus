@@ -1,3 +1,4 @@
+import { Category } from "../types/category.type";
 import { Priority } from "../types/priority.type";
 import { Status } from "../types/status.type";
 import { BaseModel } from "./base.model";
@@ -7,6 +8,7 @@ export class SolutionModel extends BaseModel {
     userInCharge: UserModel | null;
     userInChargeId: string | null;
     name: string;
+    category: Category;
     clientDepartment: string;
     benefit: number | null;
     investment: number | null;

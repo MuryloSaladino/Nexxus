@@ -3,6 +3,7 @@ import { UserPresenter } from "../users/users.presenter";
 import { Status } from "src/domain/types/status.type";
 import { Priority } from "src/domain/types/priority.type";
 import { SolutionModel } from "src/domain/models/solution.model";
+import { Category } from "src/domain/types/category.type";
 
 export class SummarizedSolutionPresenter {
     @ApiProperty()
@@ -29,6 +30,8 @@ export class SummarizedSolutionPresenter {
     readonly status: Status;
     @ApiProperty()
     readonly priority: Priority;
+    @ApiProperty()
+    readonly category: Category;
 
     constructor(solution: Omit<SolutionModel, "description" | "justification" | "orchestration">) {
         this.id = solution.id;
@@ -42,7 +45,8 @@ export class SummarizedSolutionPresenter {
         this.benefit = solution.benefit;
         this.investment = solution.investment;
         this.status = solution.status;
-        this.priority = solution.priority;
+        this.priority = solution.priority; 
+        this.category = solution.category;
     }
 }
 

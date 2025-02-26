@@ -1,4 +1,4 @@
-import { DepartmentTotalSolutions, GeneralStatusInsight, InvestmentBenefitProportion, InvestmentBenefitSummary } from "src/domain/interfaces/insights.interface";
+import { DepartmentTotalSolutions, GeneralStatusInsight, InvestmentBenefitProportionByCategory, InvestmentBenefitSummary } from "src/domain/interfaces/insights.interface";
 import { ISolutionRepository } from "src/domain/repositories/solution.repository";
 
 export class SolutionInsightsUseCases {
@@ -6,8 +6,8 @@ export class SolutionInsightsUseCases {
         private readonly solutionsRepository: ISolutionRepository,
     ) { }
 
-    async getInvestmentBenefitProportion(): Promise<InvestmentBenefitProportion[]> {
-        return await this.solutionsRepository.getInvestmentBenefitProportion()
+    async getInvestmentBenefitProportionByCategory(): Promise<InvestmentBenefitProportionByCategory[]> {
+        return await this.solutionsRepository.getInvestmentBenefitProportionByCategory()
     }
 
     async getInvestmentBenefitSummary(): Promise<InvestmentBenefitSummary> {

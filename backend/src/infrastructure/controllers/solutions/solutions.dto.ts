@@ -1,4 +1,5 @@
 import { IsDecimal, IsIn, IsNumber, IsOptional, IsString, IsUUID, MaxLength, MinLength, ValidateIf } from "class-validator";
+import { Category, categoryTypes } from "src/domain/types/category.type";
 import { Priority, priorityTypes } from "src/domain/types/priority.type";
 import { statusTypes, Status } from "src/domain/types/status.type";
 
@@ -30,6 +31,9 @@ export class CreateSolutionDTO {
     
     @IsIn(priorityTypes)
     readonly priority: Priority;
+
+    @IsIn(categoryTypes)
+    readonly category: Category;
     
     @IsString()
     readonly description: string;
@@ -61,24 +65,35 @@ export class UpdateSolutionDTO {
     
     @IsDecimal({ decimal_digits: "2" })
     @ValidateIf((_, value) => value !== null)
+    @IsOptional()
     readonly benefit: number | null;
     
     @IsDecimal({ decimal_digits: "2" })
     @ValidateIf((_, value) => value !== null)
+    @IsOptional()
     readonly investment: number | null;
     
     @IsIn(statusTypes)
+    @IsOptional()
     readonly status: Status;
     
     @IsIn(priorityTypes)
+    @IsOptional()
     readonly priority: Priority;
+
+    @IsIn(categoryTypes)
+    @IsOptional()
+    readonly category: Category;
     
     @IsString()
+    @IsOptional()
     readonly description: string;
     
     @IsString()
+    @IsOptional()
     readonly justification: string;
     
     @IsString()
+    @IsOptional()
     readonly orchestration: string;
 }

@@ -5,6 +5,7 @@ import { Status } from "src/domain/types/status.type";
 import { BaseEntity } from "./base.entity";
 import { Column, Entity, ManyToOne } from "typeorm";
 import { User } from "./user.entity";
+import { Category } from "src/domain/types/category.type";
 
 @Entity("solutions")
 export class Solution extends BaseEntity implements SolutionModel {
@@ -34,6 +35,9 @@ export class Solution extends BaseEntity implements SolutionModel {
     
     @Column()
     priority: Priority;
+
+    @Column()
+    category: Category;
     
     @Column({ type: "text" })
     description: string;

@@ -13,9 +13,9 @@ export class InsightsController {
     ) {}
 
     @Get("/investment-benefit-proportion")
-    async getInvestmentBenefitProportion() {
+    async getInvestmentBenefitProportionByCategory() {
         return await this.solutionInsightsUseCaseProxy
-            .getInstance().getInvestmentBenefitProportion()
+            .getInstance().getInvestmentBenefitProportionByCategory()
     }
 
     @Get("/investment-benefit-summary")

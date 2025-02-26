@@ -1,5 +1,5 @@
-export interface InvestmentBenefitProportion {
-    solutionName: string;
+export interface InvestmentBenefitProportionByCategory {
+    category: string;
     proportion: number;
 }
 

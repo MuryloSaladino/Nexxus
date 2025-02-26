@@ -4,9 +4,9 @@ import { BaseRepository } from "./base-repository";
 import { Solution } from "../entities/solution.entity";
 import { SolutionModel } from "src/domain/models/solution.model";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { Like, Repository } from "typeorm";
 import { Paginated } from "src/domain/interfaces/pagination.interface";
-import { InvestmentBenefitProportion, InvestmentBenefitSummary, DepartmentTotalSolutions, GeneralStatusInsight } from "src/domain/interfaces/insights.interface";
+import { InvestmentBenefitProportionByCategory, InvestmentBenefitSummary, DepartmentTotalSolutions, GeneralStatusInsight } from "src/domain/interfaces/insights.interface";
 
 @Injectable()
 export class SolutionsRepository extends BaseRepository<Solution> implements ISolutionRepository {
@@ -15,7 +15,7 @@ export class SolutionsRepository extends BaseRepository<Solution> implements ISo
         protected readonly repository: Repository<Solution>
     ) { super() }
 
-    async findSummarized(page: number = 1, size: number = 10): 
+    async findSummarized(name: string = "", page: number = 1, size: number = 10): 
         Promise<Paginated<Omit<SolutionModel, "description" | "justification" | "orchestration">>> {
             const data = await this.repository.find({
                 select: {
@@ -27,6 +27,7 @@ export class SolutionsRepository extends BaseRepository<Solution> implements ISo
                 relations: { userInCharge: true },
                 skip: (page - 1) * size,
                 take: size,
+                where: { name: Like(`%${name}%`) }
             });
             const count = await this.repository.count();
 
@@ -36,11 +37,12 @@ export class SolutionsRepository extends BaseRepository<Solution> implements ISo
             };
     }
 
-    async getInvestmentBenefitProportion(): Promise<InvestmentBenefitProportion[]> {
+    async getInvestmentBenefitProportionByCategory(): Promise<InvestmentBenefitProportionByCategory[]> {
         return await this.repository
             .createQueryBuilder("s")
-            .select("s.name", "projectName")
-            .addSelect("s.benefit / s.investment", "proportion")
+            .select("s.category", "category")
+            .addSelect("AVG(s.benefit / s.investment)", "proportion")
+            .groupBy("s.category")
             .getRawMany();
     }
 

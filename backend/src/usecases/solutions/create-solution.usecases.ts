@@ -1,6 +1,7 @@
 import { SolutionModel } from "src/domain/models/solution.model";
 import { ISolutionRepository } from "src/domain/repositories/solution.repository";
 import { IUsersRepository } from "src/domain/repositories/user.repository";
+import { Category } from "src/domain/types/category.type";
 import { Priority } from "src/domain/types/priority.type";
 import { Status } from "src/domain/types/status.type";
 import { NotFoundError } from "src/infrastructure/errors/not-found.error";
@@ -13,6 +14,7 @@ interface ISolutionCreation {
     investment: number | null;
     status: Status;
     priority: Priority;
+    category: Category;
     description: string;
     justification: string;
     orchestration: string;
