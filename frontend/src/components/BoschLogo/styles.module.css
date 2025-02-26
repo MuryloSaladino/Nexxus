@@ -1,0 +1,13 @@
+.small {
+    height: 2rem;
+}
+.medium {
+    height: 3.5rem;
+}
+.large {
+    height: 5rem;
+}
+
+.grow {
+    transform: scale(1.2);
+}

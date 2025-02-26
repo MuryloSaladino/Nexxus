@@ -1,0 +1,14 @@
+.form {
+    width: 100%;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.submit_button {
+    align-self: flex-end;
+}

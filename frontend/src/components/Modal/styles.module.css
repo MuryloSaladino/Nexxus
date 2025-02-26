@@ -1,0 +1,38 @@
+.modal {
+    width: 98%;
+    margin: 5% auto;
+
+    background-color: var(--gray-0);
+    padding: 2.5rem 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+
+    position: relative;
+}
+
+.close_button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    border: none;
+    background-color: transparent;
+
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.xs {
+    max-width: 300px;
+}
+.sm {
+    max-width: 500px;
+}
+.md {
+    max-width: 750px;
+}
+.lg {
+    max-width: 1000px;
+}
+.xl {
+    max-width: 1200px;
+}

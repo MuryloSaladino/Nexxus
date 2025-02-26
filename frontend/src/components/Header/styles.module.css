@@ -1,0 +1,47 @@
+.header {
+    height: var(--header-height);
+    width: 100%;
+    
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    
+    background-color: var(--gray-0);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5% 0;
+}
+
+.header::after {
+    content: "";
+    
+    background-image: url("/images/background/bosch-colors.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.user_icon {
+    cursor: pointer;
+}
+
+.header > nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logout {
+    cursor: pointer;
+    transition: 0.15s;
+}
+.logout:hover {
+    color: var(--error-main);
+}
