@@ -1,0 +1,65 @@
+.loading {
+    position: relative;
+
+    --1: no-repeat linear-gradient(var(--primary-main) 0 0);
+    --2: no-repeat linear-gradient(var(--secondary-main) 0 0);
+    --3: no-repeat linear-gradient(var(--success-main) 0 0);
+    --4: no-repeat linear-gradient(var(--error-main) 0 0);
+
+    --tl: 0 0;
+    --tr: 100% 0;
+    --bl: 0 100%;
+    --br: 100% 100%;
+}
+.loading::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    
+    border-radius: inherit;
+    background-color: rgba(0, 0, 0, .5);
+}
+.loading::after {
+    content: "";
+    width: 5rem;
+    height: 5rem;
+
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;
+    z-index: 2;
+    
+    background: var(--1), var(--2), var(--3), var(--4);
+    background-size: 2.5rem 2.5rem;
+    animation: l5 6s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+
+@keyframes l5 {
+   0%       { background-position: var(--tl), var(--tr), var(--br), var(--bl); width: 5rem;   height: 5rem   }
+   6.25%    { background-position: var(--tl), var(--tr), var(--br), var(--bl); width: 7.5rem; height: 7.5rem }
+   12.5%    { background-position: var(--tr), var(--br), var(--bl), var(--tl); width: 7.5rem; height: 7.5rem }
+   18.75%   { background-position: var(--tr), var(--br), var(--bl), var(--tl); width: 5rem;   height: 5rem   }
+
+   25%      { background-position: var(--tr), var(--br), var(--bl), var(--tl); width: 5rem;   height: 5rem   }
+   31.25%   { background-position: var(--tr), var(--br), var(--bl), var(--tl); width: 7.5rem; height: 7.5rem }
+   37.5%    { background-position: var(--br), var(--bl), var(--tl), var(--tr); width: 7.5rem; height: 7.5rem }
+   43.75%   { background-position: var(--br), var(--bl), var(--tl), var(--tr); width: 5rem;   height: 5rem   }
+
+   50%      { background-position: var(--br), var(--bl), var(--tl), var(--tr); width: 5rem;   height: 5rem   }
+   56.25%   { background-position: var(--br), var(--bl), var(--tl), var(--tr); width: 7.5rem; height: 7.5rem }
+   62.5%    { background-position: var(--bl), var(--tl), var(--tr), var(--br); width: 7.5rem; height: 7.5rem }
+   68.75%   { background-position: var(--bl), var(--tl), var(--tr), var(--br); width: 5rem;   height: 5rem   }
+
+   75%      { background-position: var(--bl), var(--tl), var(--tr), var(--br); width: 5rem;   height: 5rem   }
+   81.25%   { background-position: var(--bl), var(--tl), var(--tr), var(--br); width: 7.5rem; height: 7.5rem }
+   87.5%    { background-position: var(--tl), var(--tr), var(--br), var(--bl); width: 7.5rem; height: 7.5rem }
+   93.75%   { background-position: var(--tl), var(--tr), var(--br), var(--bl); width: 5rem;   height: 5rem   }
+
+   100%     { background-position: var(--tl), var(--tr), var(--br), var(--bl); width: 5rem;   height: 5rem   }
+}
